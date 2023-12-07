@@ -11,7 +11,6 @@ def display_menu():
 
 
 try:
-    # Establishing the connection to the MySQL database
     mydb = mysql.connector.connect(
         host="-",
         port="-",
@@ -33,7 +32,6 @@ try:
                 tags = input("Enter comma-separated tags: ")
                 category = input("Enter note category: ")
 
-                # Inserting a new note into the 'notes' table with user input
                 insert_query = """
                 INSERT INTO main_table.notes (title, content, creation_date, tags, category, modified_date)
                 VALUES (%s, %s, %s, %s, %s, %s)
@@ -47,8 +45,6 @@ try:
             elif choice == '2':
                 update_title = input("Enter the title of the note to update: ")
                 new_content = input("Enter updated content: ")
-
-                # Updating a note in the 'notes' table with user input
                 update_query = "UPDATE main_table.notes SET content = %s WHERE title = %s"
                 mycursor = mydb.cursor()
                 mycursor.execute(update_query, (new_content, update_title))
@@ -57,8 +53,6 @@ try:
 
             elif choice == '3':
                 delete_title = input("Enter the title of the note to delete: ")
-
-                # Deleting a note from the 'notes' table with user input
                 delete_query = "DELETE FROM main_table.notes WHERE title = %s"
                 mycursor = mydb.cursor()
                 mycursor.execute(delete_query, (delete_title,))
@@ -72,7 +66,6 @@ try:
             else:
                 print("Invalid choice. Please enter a valid option.")
 
-        # Closing the database connection
         mydb.close()
     else:
         print("Failed to connect to the database.")
