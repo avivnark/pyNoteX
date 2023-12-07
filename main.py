@@ -13,11 +13,11 @@ def display_menu():
 try:
     # Establishing the connection to the MySQL database
     mydb = mysql.connector.connect(
-        host="pynodexdatabase.ck4lrsp8d7db.eu-north-1.rds.amazonaws.com",
-        port=3306,
+        host="-",
+        port="-",
         user="admin",
-        password="4O4Oeb6ZWk8NGWfUcd9q",
-        database="pynodexdatabase"
+        password="-",
+        database="-"
     )
 
     if mydb.is_connected():
